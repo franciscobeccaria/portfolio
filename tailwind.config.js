@@ -2,6 +2,20 @@ module.exports = {
   purge: [],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    extend: {
+      spacing: {
+        100: '26rem',
+        110: '28rem',
+        120: '30rem',
+        130: '32rem',
+        140: '34rem',
+        150: '36rem',
+      },
+    },
+    backgroundColor: (theme) => ({
+      ...theme('colors'),
+      dark: '#252525',
+    }),
     zIndex: {
       neg: '-10',
       10: '10',

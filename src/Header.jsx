@@ -5,9 +5,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 import {faBars} from '@fortawesome/free-solid-svg-icons'
 
-const Header = ({scrollDownIsInViewport}) => {
-    console.log(scrollDownIsInViewport)
-    if(scrollDownIsInViewport === true || scrollDownIsInViewport === undefined) {
+const Header = ({scrollDownIsInViewport, aboutMeIsInViewport}) => {
+    console.log('MainIsInViewport?', scrollDownIsInViewport ? 'Si' : 'No')
+    if(scrollDownIsInViewport === true || scrollDownIsInViewport === undefined || aboutMeIsInViewport === false) {
         return (
             <header className="w-full h-16 fixed top-0 left-0 flex justify-between px-4 z-10">
                 <div className='w-20 h-full flex items-center justify-center'>

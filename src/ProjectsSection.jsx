@@ -1,8 +1,12 @@
 import React, {useRef, useEffect} from 'react'
+import {connect} from 'react-redux'
+import {addToCart} from './redux/actionCreators'
 
-const ProjectsSection = () => {
+import ProjectCard from './ProjectCard'
 
-    const box = useRef(null)
+const ProjectsSection = ({addCourseToCart}) => {
+
+    const projectsSecionView = useRef(null)
 
     function isInViewport(el) {
         const rect = el.getBoundingClientRect();
@@ -18,6 +22,7 @@ const ProjectsSection = () => {
     useEffect(() => {
         document.addEventListener('scroll', function () {
             //console.log(isInViewport(box.current)) 
+            addCourseToCart(!isInViewport(projectsSecionView.current)) 
         });
       
     }, [])
@@ -25,13 +30,27 @@ const ProjectsSection = () => {
     
 
     return (
-        <section className='w-full h-screen flex justify-center items-center'>
-            <h2 className='font-inter'>Some projects</h2>
-            <div className='flex justify-center items-center'>
-                
+        <section className='relative w-full min-h-screen bg-white flex justify-around items-center flex-col pt-16 pb-2 sm:pb-4 xl:pb-10'>
+            <h2 className='font-inter font-bold text-6xl text-center text-black mb-16 px-6 mt-8'>Some projects</h2>
+            <div className='flex items-center justify-center flex-wrap sm:px-12'>
+                <ProjectCard/>
+                <ProjectCard/>
+                <ProjectCard/>
+                <ProjectCard/>
             </div>
+            <div ref={projectsSecionView} className='z-neg w-full bg-red-600 absolute left-0 bottom-0 my-2.5 h-2.5'></div>
         </section>
     )
 }
 
-export default ProjectsSection
+const mapStateToProps = state => (
+    {}
+)
+
+const mapDispatchToProps = dispatch => ({
+    addCourseToCart(id){
+        dispatch(addToCart(id))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectsSection)

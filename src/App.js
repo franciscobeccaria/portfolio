@@ -6,6 +6,9 @@ import store from './redux/store';
 import Header from './Header';
 import MainSection from './MainSection';
 import ProjectsSection from './ProjectsSection';
+import AboutMeSection from './AboutMeSection';
+import ContactSection from './ContactSection';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
       <Header />
       <MainSection />
       <ProjectsSection />
+      <AboutMeSection />
+      <ContactSection />
+      <Footer />
     </Provider>
   );
 }

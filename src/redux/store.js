@@ -3,6 +3,7 @@ import { ADD_TO_CART } from './actions';
 
 const initialStore = {
   scrollDownIsInViewport: undefined,
+  aboutMeIsInViewport: undefined,
 };
 
 const rootReducer = (state = initialStore, action) => {
