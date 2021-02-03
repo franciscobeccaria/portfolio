@@ -1,1 +1,3 @@
 export const IS_IN_VIEWPORT = 'IS_IN_VIEWPORT';
+export const TOAST_MESSAGE = 'TOAST_MESSAGE';
+export const PROJECT_MODAL = 'PROJECT_MODAL';

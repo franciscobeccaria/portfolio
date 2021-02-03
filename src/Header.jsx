@@ -41,8 +41,10 @@ const MenuWrapper = styled.div`
 const Header = ({receivedState}) => {
 
     let headerWhite = useRef(undefined)
-    let headerInMain = useRef(undefined)
+    let headerInMain = useRef(true)
     const menuWrapper = useRef(null)
+
+    let whereAreWe = useRef('main')
 
     const [menuState, setMenuState] = useState({
         show: false,
@@ -50,18 +52,27 @@ const Header = ({receivedState}) => {
 
     useEffect(() => {
         if(receivedState.contactSectionTop <= 25) {
+            // We are in Contact Section
+            whereAreWe.current = 'contact'
             headerWhite.current = false
             headerInMain.current = false
         } else if (receivedState.aboutMeSectionTop <= 25) {
+            // We are in About Me Section
+            whereAreWe.current = 'about'
             headerWhite.current = true
             headerInMain.current = false
         } else if (receivedState.projectsSectionTop <= 25){
+            // We are in Projects Section
+            whereAreWe.current = 'projects'
             headerWhite.current = false
             headerInMain.current = false
         } else if (receivedState.mainSectionTop <= 25) {
+            // We are in Main Section
+            whereAreWe.current = 'main'
             headerWhite.current = true
             headerInMain.current = true
         } else {
+            // We don't know where we are. 
             headerWhite.current = true
             headerInMain.current = true
         }
@@ -86,6 +97,41 @@ const Header = ({receivedState}) => {
             show: false,
         })
     }
+
+    const goToSection = (whereAreWe) => {
+        if (whereAreWe === 'main') {
+            // Going to Main Section
+            window.scrollBy({
+                top: receivedState.mainSectionTop, 
+                left: 0, 
+                behavior: 'smooth'
+              });
+        }
+        if (whereAreWe === 'projects') {
+            // Going to Projects Section
+            window.scrollBy({
+                top: receivedState.projectsSectionTop, 
+                left: 0, 
+                behavior: 'smooth'
+              });
+        }
+        if (whereAreWe === 'about') {
+            // Going to About Me Section
+            window.scrollBy({
+                top: receivedState.aboutMeSectionTop, 
+                left: 0, 
+                behavior: 'smooth'
+              });
+        }
+        if (whereAreWe === 'contact') {
+            // Going to Contact Section
+            window.scrollBy({
+                top: receivedState.contactSectionTop, 
+                left: 0, 
+                behavior: 'smooth'
+              });
+        }
+    }
     
     const iconWhite = 'transition duration-500 ease-in-out text-black sm:text-white hover:opacity-75 m-4 cursor-pointer transform hover:-translate-y-1 hover:scale-110'
     const iconBlack = 'transition duration-500 ease-in-out text-black sm:text-black hover:opacity-75 m-4 cursor-pointer transform hover:-translate-y-1 hover:scale-110'
@@ -102,13 +148,13 @@ const Header = ({receivedState}) => {
                 <FontAwesomeIcon icon={faBars} size='lg' onClick={() => openMenu()} className={headerInMain.current === true ? forceIconWhite : headerWhite.current === true ? iconWhite : headerWhite.current === undefined ? iconWhite : iconBlack}/>
             </div>
             <div className={headerInMain.current === true ? headerRightInMain : headerRightOutMain}>
-                <a href="https://github.com/franciscobeccaria" target="_blank" rel="noreferrer">
+                <a href="https://github.com/franciscobeccaria" target="_blank" rel="noreferrer" title='GitHub'>
                     <FontAwesomeIcon icon={faGithub} size='lg' className={headerInMain.current === true ? forceIconWhite : headerWhite.current === true ? iconWhite : headerWhite.current === undefined ? iconWhite : iconBlack}/>
                 </a>
-                <a href="https://twitter.com/Fran_dev_" target="_blank" rel="noreferrer">
+                <a href="https://twitter.com/Fran_dev_" target="_blank" rel="noreferrer" title='Twitter'>
                     <FontAwesomeIcon icon={faTwitter} size='lg' className={headerInMain.current === true ? forceIconWhite : headerWhite.current === true ? iconWhite : headerWhite.current === undefined ? iconWhite : iconBlack}/>
                 </a>
-                <a href="https://www.linkedin.com/in/francisco-b-5119b3114/" target="_blank" rel="noreferrer">
+                <a href="https://www.linkedin.com/in/francisco-b-5119b3114/" target="_blank" rel="noreferrer" title='LinkedIn'>
                     <FontAwesomeIcon icon={faLinkedinIn} size='lg' className={headerInMain.current === true ? forceIconWhite : headerWhite.current === true ? iconWhite : headerWhite.current === undefined ? iconWhite : iconBlack}/>
                 </a>
                 
@@ -120,10 +166,38 @@ const Header = ({receivedState}) => {
                         <FontAwesomeIcon icon={faTimes} size='lg' onClick={() => closeMenu()} className={iconBlack}/>
                     </div>
                     <ul className='text-center text-4xl font-inter font-bold'>
-                        <li className='m-6 cursor-pointer hover:text-blue-500 transition duration-500 ease-in-out'>Home</li>
-                        <li className='m-6 cursor-pointer hover:text-blue-500 transition duration-500 ease-in-out'>Projects</li>
-                        <li className='m-6 cursor-pointer hover:text-blue-500 transition duration-500 ease-in-out'>About Me</li>
-                        <li className='m-6 cursor-pointer hover:text-blue-500 transition duration-500 ease-in-out'>Contact</li>
+                        <li className={whereAreWe.current === 'main' 
+                                            ? 'm-6 cursor-pointer text-blue-500 hover:text-black transition duration-500 ease-in-out'
+                                            : 'm-6 cursor-pointer text-black hover:text-blue-500 transition duration-500 ease-in-out'
+                                        }
+                            onClick={() => {goToSection('main'); closeMenu()}}
+                            >
+                            Home
+                        </li>
+                        <li className={whereAreWe.current === 'projects' 
+                                            ? 'm-6 cursor-pointer text-blue-500 hover:text-black transition duration-500 ease-in-out'
+                                            : 'm-6 cursor-pointer text-black hover:text-blue-500 transition duration-500 ease-in-out'
+                                        }
+                            onClick={() => {goToSection('projects'); closeMenu()}}
+                            >
+                            Projects
+                        </li>
+                        <li className={whereAreWe.current === 'about' 
+                                            ? 'm-6 cursor-pointer text-blue-500 hover:text-black transition duration-500 ease-in-out'
+                                            : 'm-6 cursor-pointer text-black hover:text-blue-500 transition duration-500 ease-in-out'
+                                        }
+                            onClick={() => {goToSection('about'); closeMenu()}}
+                            >
+                            About Me
+                        </li>
+                        <li className={whereAreWe.current === 'contact' 
+                                            ? 'm-6 cursor-pointer text-blue-500 hover:text-black transition duration-500 ease-in-out'
+                                            : 'm-6 cursor-pointer text-black hover:text-blue-500 transition duration-500 ease-in-out'
+                                        }
+                            onClick={() => {goToSection('contact'); closeMenu()}}
+                            >
+                            Contact
+                        </li>
                     </ul>
                 </div>
             </MenuWrapper>

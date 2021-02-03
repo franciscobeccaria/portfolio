@@ -9,6 +9,8 @@ import ProjectsSection from './ProjectsSection';
 import AboutMeSection from './AboutMeSection';
 import ContactSection from './ContactSection';
 import Footer from './Footer';
+import ToastMessage from './ToastMessage';
+import ProjectModal from './ProjectModal';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
       <AboutMeSection />
       <ContactSection />
       <Footer />
+      <ToastMessage />
+      <ProjectModal />
     </Provider>
   );
 }

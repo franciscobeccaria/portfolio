@@ -8,6 +8,7 @@ const AboutMeSection = ({isInViewportReducer}) => {
     const aboutMeSection = useRef(null)
     
     useEffect(() => {
+        isInViewportReducer({aboutMeSectionTop: aboutMeSection.current.getBoundingClientRect().top})
         document.addEventListener('scroll', function () {
             isInViewportReducer({aboutMeSectionTop: aboutMeSection.current.getBoundingClientRect().top})
         });

@@ -1,19 +1,19 @@
 import React, {useEffect, useRef} from 'react'
-import axios from 'axios'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faUser, faEnvelope} from '@fortawesome/free-regular-svg-icons'
 
 import {connect} from 'react-redux'
-import {isInViewport} from './redux/actionCreators'
+import {isInViewport, toastMessage} from './redux/actionCreators'
 
 import Input from './Input'
 
-const ContactSection = ({isInViewportReducer}) => {
+const ContactSection = ({isInViewportReducer, toastMessageReducer}) => {
 
     const contactSection = useRef(null)
     
     useEffect(() => {
+        isInViewportReducer({contactSectionTop: contactSection.current.getBoundingClientRect().top})
         document.addEventListener('scroll', function () {
             isInViewportReducer({contactSectionTop: contactSection.current.getBoundingClientRect().top})
         });
@@ -30,9 +30,11 @@ const ContactSection = ({isInViewportReducer}) => {
           if (xhr.readyState !== XMLHttpRequest.DONE) return;
           if (xhr.status === 200) {
             form.reset();
-            //this.setState({ status: "SUCCESS" });
+            console.log('success')
+            toastMessageReducer({visibility: true, text: 'Form sent!'})
           } else {
-            //this.setState({ status: "ERROR" });
+            console.log('error')
+            toastMessageReducer({visibility: true, text: 'An error has occurred!'})
           }
         };
         xhr.send(data);
@@ -76,6 +78,9 @@ const mapStateToProps = state => (
 const mapDispatchToProps = dispatch => ({
     isInViewportReducer(data){
         dispatch(isInViewport(data))
+    },
+    toastMessageReducer(data){
+        dispatch(toastMessage(data))
     }
 })
 

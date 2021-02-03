@@ -57,6 +57,7 @@ const MainSection = ({isInViewportReducer}) => {
     const mainSection = useRef(null)
 
     useEffect(() => {
+        isInViewportReducer({mainSectionTop: mainSection.current.getBoundingClientRect().top})
         document.addEventListener('scroll', function () {
             isInViewportReducer({mainSectionTop: mainSection.current.getBoundingClientRect().top})
         });
