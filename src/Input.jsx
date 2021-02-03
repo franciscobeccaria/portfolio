@@ -10,7 +10,7 @@ const Input = ({validMessage, id, label, placeholder, inputType, icon, textarea}
 
                     <div className="relative">
 
-                        <textarea name={id} id={id} cols="30" rows="10" placeholder={placeholder}
+                        <textarea name={id} id={id} cols="30" rows="10" placeholder={placeholder} required
                             className={validMessage === true
                                 ?
                                     "h-40 font-inter text-sm sm:text-base relative w-full border rounded placeholder-gray-400 focus:border-indigo-400 focus:outline-none py-2 pr-2 pl-12 border-red-500"
@@ -47,6 +47,7 @@ const Input = ({validMessage, id, label, placeholder, inputType, icon, textarea}
                                 name={id}
                                 type={inputType}
                                 placeholder={placeholder}
+                                required
                                 className={validMessage === true
                                     ?
                                         "font-inter text-sm sm:text-base relative w-full border rounded placeholder-gray-400 focus:border-indigo-400 focus:outline-none py-2 pr-2 pl-12 border-red-500"

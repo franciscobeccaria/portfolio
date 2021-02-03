@@ -1,8 +1,8 @@
-import { ADD_TO_CART } from './actions';
+import { IS_IN_VIEWPORT } from './actions';
 
-const addToCart = (id) => ({
-  type: ADD_TO_CART,
-  id,
+const isInViewport = (data) => ({
+  type: IS_IN_VIEWPORT,
+  data,
 });
 
-export { addToCart };
+export { isInViewport };

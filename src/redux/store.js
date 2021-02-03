@@ -1,17 +1,39 @@
 import { createStore } from 'redux';
-import { ADD_TO_CART } from './actions';
+import { IS_IN_VIEWPORT } from './actions';
 
 const initialStore = {
-  scrollDownIsInViewport: undefined,
-  aboutMeIsInViewport: undefined,
+  mainSectionTop: undefined,
+  projectsSectionTop: undefined,
+  aboutMeSectionTop: undefined,
+  contactSectionTop: undefined,
 };
 
 const rootReducer = (state = initialStore, action) => {
-  if (action.type === ADD_TO_CART) {
-    return {
-      ...state,
-      scrollDownIsInViewport: action.id,
-    };
+  if (action.type === IS_IN_VIEWPORT) {
+    if (action.data.mainSectionTop) {
+      return {
+        ...state,
+        mainSectionTop: action.data.mainSectionTop,
+      };
+    }
+    if (action.data.projectsSectionTop) {
+      return {
+        ...state,
+        projectsSectionTop: action.data.projectsSectionTop,
+      };
+    }
+    if (action.data.aboutMeSectionTop) {
+      return {
+        ...state,
+        aboutMeSectionTop: action.data.aboutMeSectionTop,
+      };
+    }
+    if (action.data.contactSectionTop) {
+      return {
+        ...state,
+        contactSectionTop: action.data.contactSectionTop,
+      };
+    }
   }
   return state;
 };

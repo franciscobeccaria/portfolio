@@ -1,1 +1,1 @@
-export const ADD_TO_CART = 'ADD_TO_CART';
+export const IS_IN_VIEWPORT = 'IS_IN_VIEWPORT';

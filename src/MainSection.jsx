@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from 'react'
 import styled from 'styled-components'
 import {connect} from 'react-redux'
-import {addToCart} from './redux/actionCreators'
+import {isInViewport} from './redux/actionCreators'
 
 const ScrollDown = styled.div`
   position: absolute;
@@ -52,35 +52,20 @@ const ScrollDown = styled.div`
 }
 `
 
-const MainSection = ({addCourseToCart}) => {
+const MainSection = ({isInViewportReducer}) => {
 
-    const scrollDown = useRef(null)
-
-    function isInViewport(el) {
-        const rect = el.getBoundingClientRect();
-        return (
-            rect.top >= 0 &&
-            rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    
-        );
-    }
+    const mainSection = useRef(null)
 
     useEffect(() => {
         document.addEventListener('scroll', function () {
-            //console.log(isInViewport(scrollDown.current))
-            // quiero que cuando scrollDown se deje de mostrar se pinten de negro los iconos del Hedaer. 
-            // en store va a ser, scrollDownIsInViewport: true/false. initialStore tiene que estar vacio o undefined.
-            addCourseToCart(isInViewport(scrollDown.current)) 
+            isInViewportReducer({mainSectionTop: mainSection.current.getBoundingClientRect().top})
         });
-      
     }, [])
 
     return (
-        <section className='relative w-full h-screen bg-gradient-to-r from-green-400 to-blue-500 flex justify-center items-center'>
+        <section ref={mainSection} className='relative w-full h-screen bg-gradient-to-r from-green-400 to-blue-500 flex justify-center items-center'>
             <div>
-                <h1 className='font-inter font-bold text-7xl text-center text-white'>Francisco Beccaria</h1>
+                <h1 className='font-inter font-bold text-6xl sm:text-7xl text-center text-white'>Francisco Beccaria</h1>
                 <p className='font-inter text-lg opacity-70 text-center text-white'>Frontend Developer</p>
             </div>
             <ScrollDown>
@@ -89,7 +74,6 @@ const MainSection = ({addCourseToCart}) => {
                 </span>
                 <h2 className='font-inter'>Scroll down</h2>
             </ScrollDown>
-            <div ref={scrollDown} className='z-neg w-full bg-red-600 absolute self-end my-2.5 h-2.5'></div>
         </section>
     )
 }
@@ -99,8 +83,8 @@ const mapStateToProps = state => (
 )
 
 const mapDispatchToProps = dispatch => ({
-    addCourseToCart(id){
-        dispatch(addToCart(id))
+    isInViewportReducer(data){
+        dispatch(isInViewport(data))
     }
 })
 

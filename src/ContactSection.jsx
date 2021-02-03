@@ -1,15 +1,47 @@
-import React from 'react'
+import React, {useEffect, useRef} from 'react'
+import axios from 'axios'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {faUser, faEnvelope} from '@fortawesome/free-regular-svg-icons'
 
+import {connect} from 'react-redux'
+import {isInViewport} from './redux/actionCreators'
+
 import Input from './Input'
 
-const ContactSection = () => {
+const ContactSection = ({isInViewportReducer}) => {
+
+    const contactSection = useRef(null)
+    
+    useEffect(() => {
+        document.addEventListener('scroll', function () {
+            isInViewportReducer({contactSectionTop: contactSection.current.getBoundingClientRect().top})
+        });
+    }, [])
+
+    const submitForm = (ev) => {
+        ev.preventDefault();
+        const form = ev.target;
+        const data = new FormData(form);
+        const xhr = new XMLHttpRequest();
+        xhr.open(form.method, form.action);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState !== XMLHttpRequest.DONE) return;
+          if (xhr.status === 200) {
+            form.reset();
+            //this.setState({ status: "SUCCESS" });
+          } else {
+            //this.setState({ status: "ERROR" });
+          }
+        };
+        xhr.send(data);
+      }
+
     return (
-        <section className='w-full min-h-screen bg-gray-300 flex items-center flex-col pt-16 pb-2 sm:pb-4 xl:pb-10'>
+        <section ref={contactSection} className='relative w-full min-h-screen bg-gray-300 flex items-center flex-col pt-16 pb-2 sm:pb-4 xl:pb-10'>
             <h2 className='font-inter font-bold text-6xl text-center text-gray-700 mb-16 px-6 mt-8'>Contact</h2>
-            <form action="" className='mb-16 lg:w-130'>
+            <form onSubmit={(e) => submitForm(e)} action="https://formspree.io/f/xbjpbdzv" method="POST" className='mb-16 lg:w-130'>
                 <Input 
                     id='name'
                     label='Name'
@@ -37,4 +69,14 @@ const ContactSection = () => {
     )
 }
 
-export default ContactSection
+const mapStateToProps = state => (
+    {}
+)
+
+const mapDispatchToProps = dispatch => ({
+    isInViewportReducer(data){
+        dispatch(isInViewport(data))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactSection)

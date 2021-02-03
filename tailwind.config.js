@@ -10,6 +10,8 @@ module.exports = {
         130: '32rem',
         140: '34rem',
         150: '36rem',
+        '90%': '90%',
+        '95%': '95%',
       },
     },
     backgroundColor: (theme) => ({
@@ -17,6 +19,9 @@ module.exports = {
       dark: '#252525',
     }),
     zIndex: {
+      'neg-30': '-30',
+      'neg-20': '-20',
+      'neg-10': '-10',
       neg: '-10',
       10: '10',
     },
