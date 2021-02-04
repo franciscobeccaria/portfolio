@@ -25,7 +25,7 @@ const ProjectsSection = ({isInViewportReducer}) => {
             <h2 className='font-inter font-bold text-6xl text-center text-black mb-16 px-6 mt-8'>Some projects</h2>
             <div className='flex items-center justify-center flex-wrap sm:px-12'>
                 {state.map(e => 
-                        e.name === 'Portfolio' ? '' : 
+                        e.name === 'MovieSearcher' ? '' : 
                         <ProjectCard 
                             key={e.name}
                             title={e.name}

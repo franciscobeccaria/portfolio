@@ -18,7 +18,8 @@ const Footer = () => {
                 <a href="https://www.linkedin.com/in/francisco-b-5119b3114/" target="_blank" rel="noreferrer" title='LinkedIn'>
                     <FontAwesomeIcon icon={faLinkedinIn} size='lg' className='transition duration-500 ease-in-out text-white hover:opacity-75 m-4 cursor-pointer transform hover:-translate-y-1 hover:scale-110'/>
                 </a>
-                <a href="#" title='Resume'><FontAwesomeIcon icon={faFile} size='lg' className='transition duration-500 ease-in-out text-white hover:opacity-75 m-4 cursor-pointer transform hover:-translate-y-1 hover:scale-110'/></a>
+                <a href="https://drive.google.com/file/d/1kg73K2oeTv0-INuyRqaQsliaZ1zbgq6U/view" title='Resume (English)' target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faFile} size='lg' className='transition duration-500 ease-in-out text-white hover:opacity-75 m-4 cursor-pointer transform hover:-translate-y-1 hover:scale-110'/></a>
+                <a href="https://drive.google.com/file/d/1jpAcH-I0d0aw4s4e75jM7AObmTlUdONp/view" title='CV (Español)' target="_blank" rel="noreferrer"><FontAwesomeIcon icon={faFile} size='lg' className='transition duration-500 ease-in-out text-white hover:opacity-75 m-4 cursor-pointer transform hover:-translate-y-1 hover:scale-110'/></a>
             </div>
             </footer>
     )

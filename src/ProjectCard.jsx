@@ -36,7 +36,7 @@ const ProjectCard = ({title, image, website, repo, stack, description, technique
             <div className='div-title h-1/6 w-7/8 flex items-center justify-center transition-all duration-500 font-semibold text-white text-lg'>
                 <h4>{title}</h4>
             </div>
-            <button onClick={() => projectModalReducer({visibility: true, data: {title, image, website, repo, stack, description, technique}})} className='z-neg opacity-0 absolute top-1/2 left-1/2 rounded-xl text-white font-inter font-bold p-3 bg-blue-600 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 transition-all duration-500'>Learn More</button>
+            <button onClick={() => {projectModalReducer({visibility: true, data: {title, image, website, repo, stack, description, technique}}); window.scroll(0, -10000)}} className='z-neg opacity-0 absolute top-1/2 left-1/2 rounded-xl text-white font-inter font-bold p-3 bg-blue-600 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 transition-all duration-500'>Learn More</button>
         </Wrapper>
     )
 }
