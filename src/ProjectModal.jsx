@@ -9,7 +9,7 @@ import { faJs, faReact, faSass } from '@fortawesome/free-brands-svg-icons'
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
 
 import { IconContext } from "react-icons";
-import {SiRedux, SiFirebase, SiStyledComponents, SiTailwindcss} from 'react-icons/si'
+import {SiRedux, SiFirebase,  SiTailwindcss} from 'react-icons/si'
 
 const ModalWrapper = styled.div`
     opacity: 0;
@@ -78,12 +78,6 @@ const ProjectModal = ({receivedState, projectModalReducer}) => {
                             {e === 'Firebase' ? 
                                 <IconContext.Provider value={{ color: "black", size: "18px" }}>
                                     <SiFirebase />
-                                </IconContext.Provider>
-                            : ''
-                            }
-                            {e === 'styled-components' ? 
-                                <IconContext.Provider value={{ color: "black", size: "26px" }}>
-                                    <SiStyledComponents />
                                 </IconContext.Provider>
                             : ''
                             }
