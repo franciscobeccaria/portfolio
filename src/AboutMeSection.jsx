@@ -35,21 +35,18 @@ const AboutMeSection = ({isInViewportReducer}) => {
                 </div>
                 <div className='mb-10 md:mb-0 col-span-2'>
                     <p className='text-white font-inter'>
-                        I'm Francisco, a dedicated Frontend Developer with 3 years of experience. My expertise focuses on turning complex business needs into user-friendly solutions.<br/>
+                        I'm Francisco, a dedicated Frontend Developer with 3 years of experience. My expertise focuses on turning complex business needs into user-friendly solutions.<br/><br/>
 
-                        My core expertise is based on building web applications using ReactJS and NextJS. My familiarity with these technologies is supported by a significant understanding in:<br/>
+                        My core expertise is based on building web applications using ReactJS and NextJS. My familiarity with these technologies is supported by a significant understanding in:<br/><br/>
                         
                         - HTML: Emphasis on Semantic Markup, Accessibility, SEO<br/>
                         - CSS: Experience with TailwindCSS, Sass, BEM, Responsive Design, shadcn/ui<br/>
                         - JavaScript: Skilled in ReactJS, NextJS, TypeScript, Redux, Context, React Query<br/>
                         
-                        Additionally, I have experience working with Storybook, ESLint + Prettier, Firebase, Vanilla JavaScript, Ruby on Rails with StimulusJS and Shopify Themes.<br/>
+                        Additionally, I have experience working with Storybook, ESLint + Prettier, Firebase, Vanilla JavaScript, Ruby on Rails with StimulusJS and Shopify Themes.<br/><br/>
                         
-                        Results-oriented and skilled in analytics, I tackle challenges effectively, ensuring goals are met with creativity and efficiency.<br/>
+                        Results-oriented and skilled in analytics, I tackle challenges effectively, ensuring goals are met with creativity and efficiency.
                     </p>
-                    <p className='text-white font-inter'>Hi, my name is Francisco Beccaria. I'm 21 years old. I'm currently studying Node.js, Express and MongoDB to specialize me in the MERN stack.
-                        <br/><br/> Right now, I'm looking for my first professional job experience. I just want learn and learn. But, I think I'm ready for my first job.
-                        <br/><br/> I don't have professional experience but I did many personal projects that prove my skills, mainly for a Frontend (React) job.</p>
                 </div>
             </div>
         </section>
